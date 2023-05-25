@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  server:
+    image: crccheck/hello-world
+
+    networks:
+      - net
+
+  client:
+    image: curlimages/curl
+    command: watch -n 3 curl -s server:8000
+    networks:
+      - net
+
+
+networks:
+  net:
+    driver: bridge
